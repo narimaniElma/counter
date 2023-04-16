@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styles from "./App.module.css";
+import Counter from "./components/Counter";
 
-function App() {
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const increaseCount = () => {
+    setCount(count + 1)
+  }
+  const decreaseCount = () => {
+    setCount(count - 1)
+  }
+  const resetCount = () => {
+    setCount(0)
+  }
+
+  const myStyle = {color: 'aqua', border: '1px solid red'};
+  //Inline Styling : background-color -> backgroundColor
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={styles.App}>
+      <header className={styles.AppHeader}>
+        <h1 style={myStyle}>My counter</h1>
       </header>
+      <Counter increas={increaseCount} decrease={decreaseCount} reset={resetCount} count={count}/>
     </div>
   );
 }
